@@ -1,2 +1,2 @@
 # petl_odoo
-Provice Odoo io functionality for petl
+Provide Odoo io functionality for petl
