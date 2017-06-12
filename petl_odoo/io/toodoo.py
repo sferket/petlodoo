@@ -1,15 +1,17 @@
-
-
-
+    
 def toodoo(tbl, source, model,batch=100, tracking_disable=False):
-    header = tbl.pop(0)
-    t = 0
+    it = iter(tbl)
+    header = next(it)
     
-    while t*batch<len(tbl):
-        #print '%s - %s' % (t*batch,batch)
-        #print table2
-        ret = source.execute(model, 'load', header, tbl[t*batch:(t+1)*batch], {'context': {'tracking_disable' : tracking_disable}} )
-        print ret
-        t += 1
-    
-    
+    cnt = 0
+    recs = []
+    el = next(it, None)
+    while el:
+        recs += [el] 
+        cnt += 1
+        el = next(it, None)
+        if (not el) or (cnt >= batch):
+            ret = source.execute(model, 'load', header, recs, {'context': {'tracking_disable' : tracking_disable}} )
+            print ret
+            cnt = 0
+            recs = []
