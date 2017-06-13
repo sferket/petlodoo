@@ -5,14 +5,16 @@ Example:
 
 	import petl as etl  
 	from petl.util.base import Table  
-	from petl_odoo.io.odoo import Odoo, fromodoo, toodoo  
+	from petlodoo.io.odoo import Odoo, fromodoo, toodoo  
 	
 	# Initialize connection to Odoo  
 	odoo = Odoo('http://10.200.12.20:8069', 'test', 'admin', 'admin')  
 	
 	# Get data from Odoo  
 	table1 = fromodoo(odoo, 'product.template', [], ['name', 'standard_price', 'create_date'])  
-	print table1  
+	print table1 
+	# Or in case we have unicode
+	print table1.__unicode__   
 	
 	# Remove columns from data set  
 	table2 = etl.cutout(table1, 'standard_price', 'create_date')  
