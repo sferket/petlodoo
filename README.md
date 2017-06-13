@@ -5,9 +5,7 @@ Example:
 
 	import petl as etl  
 	from petl.util.base import Table  
-	from petl_odoo.io.odoo import Odoo  
-	from petl_odoo.io.toodoo import toodoo  
-	from petl_odoo.io.fromodoo import fromodoo  
+	from petl_odoo.io.odoo import Odoo, fromodoo, toodoo  
 	
 	# Initialize connection to Odoo  
 	odoo = Odoo('http://10.200.12.20:8069', 'test', 'admin', 'admin')  
