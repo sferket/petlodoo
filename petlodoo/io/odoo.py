@@ -17,7 +17,7 @@ def toodoo(tbl, source, model,batch=100, tracking_disable=False):
         cnt += 1
         el = next(it, None)
         if (not el) or (cnt >= batch):
-            ret = source.execute(model, 'load', header, recs, {'context': {'tracking_disable' : tracking_disable}} )
+            ret = source.execute(model, 'load', header, recs, {'tracking_disable' : tracking_disable} )
             print ret
             cnt = 0
             recs = []
