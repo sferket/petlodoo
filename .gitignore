@@ -1,0 +1,14 @@
+*~
+*.pyc
+docs/_build
+build
+MANIFEST
+dist
+.ipynb_checkpoints/
+.idea
+.tox/
+example*.*
+.coverage
+tmp*
+env/
+petlodoo.egg-info

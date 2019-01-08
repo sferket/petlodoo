@@ -1,1 +1,1 @@
-import odoo
+from . import odoo
