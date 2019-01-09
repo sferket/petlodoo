@@ -1,10 +1,8 @@
 from distutils.core import setup
 from setuptools import setup, find_packages
 
-
-
 setup(name='petlodoo',
-        version='1.0',
+        version='1.1',
         package_dir={'': '.'},
         #packages=find_packages(),
         packages=['petlodoo', 'petlodoo.io'],
