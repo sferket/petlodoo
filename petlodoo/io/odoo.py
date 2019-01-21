@@ -10,8 +10,8 @@ else:
 from petl.util.base import Table
 
 
-def fromodoo(source, model, domain=None, fields=None, batch=100):
-    return OdooView(source, model, domain, fields, batch)
+def fromodoo(source, model, domain=None, fields=None, batch=100, raw_data=False):
+    return OdooView(source, model, domain, fields, batch, raw_data)
 
 
 def toodoo(tbl, source, model, batch=100, tracking_disable=False):
@@ -65,10 +65,11 @@ class OdooView(Table):
     _fields = []
     _batch = None
 
-    def __init__(self, source, model, domain=None, fields=None, batch=None):
+    def __init__(self, source, model, domain=None, fields=None, batch=None, raw_data=False):
         self._source = source
         self._model = model
         self._batch = batch
+        self._raw_data = raw_data
         if domain:
             self._domain = domain
         if fields:
@@ -85,5 +86,5 @@ class OdooView(Table):
         yield self._fields
         ids = self._source.execute(self._model, 'search', self._domain)
         for s in [ids[x:x + self._batch] for x in xrange(0, len(ids), self._batch)]:
-            for rec in self._source.execute(self._model, 'export_data', s, self._fields, True)['datas']:
+            for rec in self._source.execute(self._model, 'export_data', s, self._fields, self._raw_data)['datas']:
                 yield rec
